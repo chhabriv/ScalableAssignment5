@@ -4,7 +4,7 @@ Created on Wed Oct 31 20:17:01 2018
 
 @author: chhabriv
 """
-import os
+import os,sys
 import secretsharing as sss
 
 # for JSON output
@@ -63,7 +63,7 @@ def pwds_shares_to_secret(kpwds,kinds,diffs):
 #    ball= json.load(f)
  
     
-jsonFile = open("json\level5.json","r")
+jsonFile = open("json\level6.json","r")
 jsonStr = jsonFile.read()
 ball = jsonpickle.decode(jsonStr)	
 jsonFile.close()
@@ -77,7 +77,7 @@ shares=[x.encode('utf-8') for x in shares]
 words=[]
 kinds=[]
 #def retrieve():
-file2 = open("potfiles\level5.potfile")
+file2 = open("potfiles\level6.potfile")
 broken=file2.readlines()    
 # Create dict from hashes to shares
 hashesToShares = {}
@@ -117,28 +117,33 @@ def decrypt(enc, password):
 levelsecret=pwds_shares_to_secret(words,kinds,shares)
 print(levelsecret)
 decrypted = decrypt(ciphertext, levelsecret.zfill(32).decode('hex'))
-csname="level6"+".json"
+
+try:
+    newball=jsonpickle.decode(bytes.decode(decrypted))
+except:
+    print("Don't have enough hashes or password in the list is wroong")
+    sys.exit("Current k is {}".format(str(len(words))))
+csname="level7"+".json"
 path=os.path.join("json\\",csname)
 with open(path,"w") as tmpf:
     tmpf.write(decrypted+"\n")
 tmpf.close()
-newball=jsonpickle.decode(bytes.decode(decrypted))
 new_ciphertext=newball["ciphertext"]
 #new_ciphertext=str([x.encode('utf-8') for x in new_ciphertext])
-csname="level6"+".ciphertext"
+csname="level7"+".ciphertext"
 path=os.path.join("ciphertext\\",csname)
 with open(path,"w") as tmpf:
     tmpf.write(new_ciphertext+"\n")
 tmpf.close()
 new_hashes=newball["hashes"]
-csname="level6"+".hashes"
+csname="level7"+".hashes"
 path=os.path.join("hashes\\",csname)
 with open(path,"w") as tmpf:
     for hash in new_hashes:
         tmpf.write(hash+"\n")
 tmpf.close()
 new_shares=newball["shares"]
-csname="level6"+".shares"
+csname="level7"+".shares"
 path=os.path.join("shares\\",csname)
 with open(path,"w") as tmpf:
     for share in new_shares:
