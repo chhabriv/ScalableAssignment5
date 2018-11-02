@@ -95,7 +95,7 @@ for entry in broken:
     words.append(word)
     kinds.append(hashes.index(hash))
         #share in inferno.values:
-
+file2.close()
 # modified from https://www.quickprogrammingtips.com/python/aes-256-encryption-and-decryption-in-python.html
 BLOCK_SIZE = 16
 pad = lambda s: s + (BLOCK_SIZE - len(s) % BLOCK_SIZE) * chr(BLOCK_SIZE - len(s) % BLOCK_SIZE)
@@ -114,9 +114,8 @@ def decrypt(enc, password):
     decrypted = unpad(cipher.decrypt(enc[16:]))
     return decrypted
 
-#levelsecret=pwds_shares_to_secret(words,kinds,shares)
-#print(levelsecret)
-levelsecret="32b1b2e5f3efe2e982716280536dc4d9"
+levelsecret=pwds_shares_to_secret(words,kinds,shares)
+print(levelsecret)
 decrypted = decrypt(ciphertext, levelsecret.zfill(32).decode('hex'))
 csname="level5"+".json"
 path=os.path.join("json\\",csname)
