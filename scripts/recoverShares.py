@@ -63,7 +63,7 @@ def pwds_shares_to_secret(kpwds,kinds,diffs):
 #    ball= json.load(f)
  
     
-jsonFile = open("json\\level9.json","r")
+jsonFile = open("json\\level10.json","r")
 jsonStr = jsonFile.read()
 ball = jsonpickle.decode(jsonStr)	
 jsonFile.close()
@@ -77,7 +77,7 @@ shares=[x.encode('utf-8') for x in shares]
 words=[]
 kinds=[]
 #def retrieve():
-file2 = open("potfiles\\level9.potfile")
+file2 = open("potfiles\\level10.potfile")
 broken=file2.readlines()    
 
 for entry in broken:
@@ -121,11 +121,13 @@ try:
 except:
     print("Don't have enough hashes or password in the list is wrong")
     sys.exit("Current k is {}".format(str(len(words))))
-csname="level10"+".json"
+print(bytes.decode(decrypted))
+csname="Complete"+".json"
 path=os.path.join("json\\",csname)
 with open(path,"w") as tmpf:
     tmpf.write(decrypted+"\n")
 tmpf.close()
+"""
 new_ciphertext=newball["ciphertext"]
 #new_ciphertext=str([x.encode('utf-8') for x in new_ciphertext])
 csname="level10"+".ciphertext"
@@ -140,6 +142,7 @@ with open(path,"w") as tmpf:
     for hash in new_hashes:
         tmpf.write(hash+"\n")
 tmpf.close()
+
 new_shares=newball["shares"]
 csname="level10"+".shares"
 path=os.path.join("shares\\",csname)
@@ -147,3 +150,4 @@ with open(path,"w") as tmpf:
     for share in new_shares:
         tmpf.write(share+"\n")
 tmpf.close()
+"""
