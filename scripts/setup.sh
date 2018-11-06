@@ -9,7 +9,7 @@
 
 #download NVIDIA Driver x86_64-367.128
 echo "START: Downloading NVIDIA Driver x86_64-367.128"
-wget http://us.download.nvidia.com/XFree86/Linux-x86_64/367.128/NVIDIA-Linux-x86_64-367.128.run
+wget http://us.download.nvidia.com/tesla/410.72/NVIDIA-Linux-x86_64-410.72.run
 echo "END : Download WGET is complete"
 
 #upgrade cycle and dependencies
@@ -22,11 +22,13 @@ echo "END: Update and build essentials"
 
 #driver install
 echo "START: NVIDIA x86_64-367.128 driver install"
-sudo /bin/bash NVIDIA-Linux-x86_64-367.128.run
+sudo /bin/bash NVIDIA-Linux-x86_64-410.72.run
 echo "END: Driver install"
 
 echo "START: install john the ripper"
 git clone https://github.com/magnumripper/JohnTheRipper.git
+sudo apt-get install build-essential libssl-dev git zlib1g-dev
+sudo apt-get install yasm libgmp-dev libpcap-dev pkg-config libbz2-dev
 cd JohnTheRipper/src/
 sudo apt-get install nvidia-opencl-dev
 sudo apt-get install cmake bison flex libicu-dev
@@ -48,4 +50,4 @@ hashcat -I
 #checking john sees devices
 echo "John Devices"
 ./JohnTheRipper/run/john --list=opencl-devices | grep "Device #"
-
+echo "SETUP should be complete."
