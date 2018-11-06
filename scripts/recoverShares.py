@@ -63,7 +63,7 @@ def pwds_shares_to_secret(kpwds,kinds,diffs):
 #    ball= json.load(f)
  
     
-jsonFile = open("json\level6.json","r")
+jsonFile = open("json\\level9.json","r")
 jsonStr = jsonFile.read()
 ball = jsonpickle.decode(jsonStr)	
 jsonFile.close()
@@ -77,21 +77,19 @@ shares=[x.encode('utf-8') for x in shares]
 words=[]
 kinds=[]
 #def retrieve():
-file2 = open("potfiles\level6.potfile")
+file2 = open("potfiles\\level9.potfile")
 broken=file2.readlines()    
-# Create dict from hashes to shares
-hashesToShares = {}
-for i in range(len(hashes)):
-    hash = hashes[i]
-    hashesToShares[hash] = shares[i]
 
 for entry in broken:
-    split = entry.strip().split(':')
+    split = entry.strip().split(':')            
     hash = split[0]
     word = split[1]
-
-    share = hashesToShares[hash]
-    #print(share + ":" + word)
+    if len(split)>2:
+        for x in range(2,len(split)):
+            word=word+":"+split[x]
+    if word in words:
+        print("duplicate")
+        break
     words.append(word)
     kinds.append(hashes.index(hash))
         #share in inferno.values:
@@ -121,29 +119,29 @@ decrypted = decrypt(ciphertext, levelsecret.zfill(32).decode('hex'))
 try:
     newball=jsonpickle.decode(bytes.decode(decrypted))
 except:
-    print("Don't have enough hashes or password in the list is wroong")
+    print("Don't have enough hashes or password in the list is wrong")
     sys.exit("Current k is {}".format(str(len(words))))
-csname="level7"+".json"
+csname="level10"+".json"
 path=os.path.join("json\\",csname)
 with open(path,"w") as tmpf:
     tmpf.write(decrypted+"\n")
 tmpf.close()
 new_ciphertext=newball["ciphertext"]
 #new_ciphertext=str([x.encode('utf-8') for x in new_ciphertext])
-csname="level7"+".ciphertext"
+csname="level10"+".ciphertext"
 path=os.path.join("ciphertext\\",csname)
-with open(path,"w") as tmpf:
+with open(path,"w") as tmpf: 
     tmpf.write(new_ciphertext+"\n")
 tmpf.close()
 new_hashes=newball["hashes"]
-csname="level7"+".hashes"
+csname="level10"+".hashes"
 path=os.path.join("hashes\\",csname)
 with open(path,"w") as tmpf:
     for hash in new_hashes:
         tmpf.write(hash+"\n")
 tmpf.close()
 new_shares=newball["shares"]
-csname="level7"+".shares"
+csname="level10"+".shares"
 path=os.path.join("shares\\",csname)
 with open(path,"w") as tmpf:
     for share in new_shares:

@@ -1,0 +1,2 @@
+grep -Eow '^[a-zA-Z0-9]{7}$' filename
+sed -r '/\b[0-9]{5,8}\b/d' filename
