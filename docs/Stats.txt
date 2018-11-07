@@ -1,0 +1,15 @@
+level=1,n=440,k=55,cracked=61,k%=12.5,cracked%=13.86, secret=dc08c10882e998e47085ea97fdfd87f9
+level=2,n=193,k=51,cracked=53,k%=26.42,cracked%=27.46, secret=8cd438644108f0420ebb783510c3c5f
+level=3,n=213,k=75,cracked=144,k%=35.21,cracked%=67.61, secret=32b1b2e5f3efe2e982716280536dc4d9
+level=4,n=240,k=71,cracked=75,k%=29.58,cracked%=31.25, secret=dd3af2ae11aa598a5a3429b4e8235980
+level=5,n=136,k=36,cracked=43,k%=26.47,cracked%=31.62, secret=393c61feeded822186fd2766cad9af32
+level=6,n=122,k=77,cracked=79,k%=63.11,cracked%=64.75, secret=c3049756bfa627a557f889e7c2031006
+level=7,n=176,k=65,cracked=88,k%=36.93,cracked%=50.0, secret=b99aca7b362f57a47518c3f12d9d08a3
+level=8,n=181,k=43,cracked=53,k%=23.76,cracked%=29.28, secret=a418f93bf8e2205559c6a037c0288bd1
+level=9,n=154,k=52,cracked=53,k%=33.77,cracked%=34.42, secret=328983320aa95260ad237923284f32c1
+level=10,n=145,k=52,cracked=78,k%=35.86,cracked%=53.79, secret=f96860a1b6e1b9e8d84219ebc4caf688
+Total n 2000
+Total k 577
+Total cracked 727
+Overall k% 29.0
+Overall cracked% 36.0
